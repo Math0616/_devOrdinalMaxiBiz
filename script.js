@@ -93,40 +93,51 @@ function updateCount() {
 document.addEventListener('DOMContentLoaded', function() {
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
-    let isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints);
+    
+    // Check for touch capability
+    const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
-    // Function to toggle dropdown
-    function toggleDropdown() {
-        // On touch devices, toggle the dropdown visibility
-        if (isTouchDevice) {
-            filterOptions.classList.toggle('show');
-        }
+    // Function to show dropdown for non-touch devices
+    function showDropdown() {
+        filterOptions.classList.add('show');
     }
 
-    // Function to close dropdown if clicked outside
+    // Function to hide dropdown for non-touch devices
+    function hideDropdown() {
+        filterOptions.classList.remove('show');
+    }
+
+    // Function to toggle dropdown for touch devices
+    function toggleDropdown(event) {
+        // Stop propagation for touch devices to prevent immediate closing
+        event.stopPropagation();
+        filterOptions.classList.toggle('show');
+    }
+
+    // Function to close dropdown when clicking outside
     function closeDropdown(event) {
         if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
             filterOptions.classList.remove('show');
         }
     }
 
-    // Event listeners for touch devices
-    if (isTouchDevice) {
-        filterButton.addEventListener('click', toggleDropdown);
-        document.addEventListener('click', closeDropdown);
-    }
-
-    // Event listeners for non-touch devices
+    // Desktop-specific event handlers
     if (!isTouchDevice) {
-        filterButton.addEventListener('mouseover', function() {
-            filterOptions.classList.add('show');
-        });
-        filterButton.addEventListener('mouseout', function() {
-            filterOptions.classList.remove('show');
-        });
+        filterButton.addEventListener('mouseover', showDropdown);
+        filterButton.addEventListener('mouseout', hideDropdown);
     }
 
-    // Prevent the dropdown from closing when clicking on the dropdown content itself
+    // Touch device specific event handler
+    filterButton.addEventListener('click', function(event) {
+        if (isTouchDevice) {
+            toggleDropdown(event);
+        }
+    });
+
+    // Clicking outside the dropdown closes it
+    window.addEventListener('click', closeDropdown);
+
+    // Prevent clicks within the dropdown from closing it
     filterOptions.addEventListener('click', function(event) {
         event.stopPropagation();
     });
