@@ -93,41 +93,40 @@ function updateCount() {
 document.addEventListener('DOMContentLoaded', function() {
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
+    const dropdownContainer = document.querySelector('.filter-dropdown'); // Container for both the button and the dropdown
     
-    // Function to show dropdown for non-small screens
+    // Function to show dropdown
     function showDropdown() {
         filterOptions.classList.add('show');
     }
 
-    // Function to hide dropdown for non-small screens
+    // Function to hide dropdown
     function hideDropdown() {
         filterOptions.classList.remove('show');
     }
 
     // Function to toggle dropdown for small screens
     function toggleDropdown(event) {
-        event.stopPropagation(); // Prevents the click from immediately closing the dropdown
-        filterOptions.classList.toggle('show');
+        if (window.matchMedia("(max-width: 700px)").matches) {
+            event.stopPropagation(); // Prevents the click from immediately closing the dropdown
+            filterOptions.classList.toggle('show');
+        }
     }
 
     // Function to close dropdown when clicking outside
     function closeDropdown(event) {
-        if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
+        if (!dropdownContainer.contains(event.target)) {
             filterOptions.classList.remove('show');
         }
     }
 
-    // Check for small screen size
-    const isSmallScreen = window.matchMedia("(max-width: 700px)").matches;
-
-    // Event handlers for small screens
-    if (isSmallScreen) {
-        filterButton.addEventListener('click', toggleDropdown);
-        document.addEventListener('click', closeDropdown);
+    // Apply the appropriate event handlers based on screen size
+    if (window.matchMedia("(max-width: 700px)").matches) {
+        filterButton.addEventListener('click', toggleDropdown); // For small screens
+        document.addEventListener('click', closeDropdown); // Close dropdown when clicking outside
     } else {
-        // Event handlers for non-small screens
-        filterButton.addEventListener('mouseover', showDropdown);
-        filterButton.addEventListener('mouseout', hideDropdown);
+        dropdownContainer.addEventListener('mouseover', showDropdown); // For non-small screens
+        dropdownContainer.addEventListener('mouseout', hideDropdown); // Hide dropdown when mouse leaves the dropdown area
     }
 
     // Prevent clicks within the dropdown from closing it
