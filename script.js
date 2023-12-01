@@ -94,23 +94,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
     
-    // Check for touch capability
-    const isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-    // Function to show dropdown for non-touch devices
+    // Function to show dropdown for non-small screens
     function showDropdown() {
         filterOptions.classList.add('show');
     }
 
-    // Function to hide dropdown for non-touch devices
+    // Function to hide dropdown for non-small screens
     function hideDropdown() {
         filterOptions.classList.remove('show');
     }
 
-    // Function to toggle dropdown for touch devices
+    // Function to toggle dropdown for small screens
     function toggleDropdown(event) {
-        // Stop propagation for touch devices to prevent immediate closing
-        event.stopPropagation();
+        event.stopPropagation(); // Prevents the click from immediately closing the dropdown
         filterOptions.classList.toggle('show');
     }
 
@@ -121,21 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Desktop-specific event handlers
-    if (!isTouchDevice) {
+    // Check for small screen size
+    const isSmallScreen = window.matchMedia("(max-width: 700px)").matches;
+
+    // Event handlers for small screens
+    if (isSmallScreen) {
+        filterButton.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', closeDropdown);
+    } else {
+        // Event handlers for non-small screens
         filterButton.addEventListener('mouseover', showDropdown);
         filterButton.addEventListener('mouseout', hideDropdown);
     }
-
-    // Touch device specific event handler
-    filterButton.addEventListener('click', function(event) {
-        if (isTouchDevice) {
-            toggleDropdown(event);
-        }
-    });
-
-    // Clicking outside the dropdown closes it
-    window.addEventListener('click', closeDropdown);
 
     // Prevent clicks within the dropdown from closing it
     filterOptions.addEventListener('click', function(event) {
