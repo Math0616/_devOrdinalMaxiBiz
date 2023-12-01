@@ -15,7 +15,16 @@
 			margin: 0 auto; /* Centers the grid in the middle of the page */
 			max-width: 1400px; /* Maximum width of the grid. Adjust as necessary. */
 			}
-	
+
+		#top-right-text {
+			position: fixed; /* Fixed position relative to the viewport */
+			top: 5px; /* Distance from the top of the viewport */
+			right: 5px; /* Distance from the right of the viewport */
+			color: white; /* Text color */
+			font-size: 16px; /* Adjust font size as needed */
+			z-index: 999; /* Ensures it stays above other elements */
+			}
+
 		.title-image {
 			display: block; /* Use block to allow for margin auto to work */
 			text-align: center; /* Centers inline or inline-block elements */
@@ -187,6 +196,9 @@
 	</style>
 </head>
 <body>
+
+<!-- Bitcoin Address for donation here -->
+<div id="top-right-text">33bwFiruMQEN78MuBqWZsrHsVSbxnQAacS</div>
 
 <div class="title-image">
     <a href="https://x.com/OrdinalMaxiBiz" target="_blank">
