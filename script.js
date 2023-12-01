@@ -90,14 +90,40 @@ function updateCount() {
 	}
 }
 
-function toggleDropdown(show) {
-	const filterOptions = document.getElementById('filter-options');
-	if (show) {
-	filterOptions.classList.add('show');
-	} else {
-	filterOptions.classList.remove('show');
-	}
-}  
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButton = document.getElementById('filter-button');
+    const filterOptions = document.getElementById('filter-options');
+
+    // Function to toggle dropdown
+    function toggleDropdown() {
+        filterOptions.classList.toggle('show');
+    }
+
+    // Function to show dropdown (for non-touch devices)
+    function showDropdown() {
+        filterOptions.classList.add('show');
+    }
+
+    // Function to close dropdown if clicked outside (for touch devices)
+    function closeDropdown(event) {
+        if (!event.target.matches('#filter-button') && filterOptions.classList.contains('show')) {
+            filterOptions.classList.remove('show');
+        }
+    }
+
+    // Detect touch capability and apply appropriate event listeners
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        filterButton.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', closeDropdown);
+    } else {
+        filterButton.addEventListener('mouseover', showDropdown);
+        filterButton.addEventListener('mouseout', function() {
+            filterOptions.classList.remove('show');
+        });
+        window.addEventListener('click', closeDropdown);
+    }
+});
+
 
 // Add event listeners to checkboxes
 document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(checkbox => {
