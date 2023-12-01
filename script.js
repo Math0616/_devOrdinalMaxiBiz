@@ -93,37 +93,44 @@ function updateCount() {
 document.addEventListener('DOMContentLoaded', function() {
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
+    let isTouchDevice = ('ontouchstart' in window || navigator.maxTouchPoints);
 
     // Function to toggle dropdown
     function toggleDropdown() {
-        filterOptions.classList.toggle('show');
+        // On touch devices, toggle the dropdown visibility
+        if (isTouchDevice) {
+            filterOptions.classList.toggle('show');
+        }
     }
 
-    // Function to show dropdown (for non-touch devices)
-    function showDropdown() {
-        filterOptions.classList.add('show');
-    }
-
-    // Function to close dropdown if clicked outside (for touch devices)
+    // Function to close dropdown if clicked outside
     function closeDropdown(event) {
-        if (!event.target.matches('#filter-button') && filterOptions.classList.contains('show')) {
+        if (!filterButton.contains(event.target) && !filterOptions.contains(event.target)) {
             filterOptions.classList.remove('show');
         }
     }
 
-    // Detect touch capability and apply appropriate event listeners
-    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+    // Event listeners for touch devices
+    if (isTouchDevice) {
         filterButton.addEventListener('click', toggleDropdown);
         document.addEventListener('click', closeDropdown);
-    } else {
-        filterButton.addEventListener('mouseover', showDropdown);
+    }
+
+    // Event listeners for non-touch devices
+    if (!isTouchDevice) {
+        filterButton.addEventListener('mouseover', function() {
+            filterOptions.classList.add('show');
+        });
         filterButton.addEventListener('mouseout', function() {
             filterOptions.classList.remove('show');
         });
-        window.addEventListener('click', closeDropdown);
     }
-});
 
+    // Prevent the dropdown from closing when clicking on the dropdown content itself
+    filterOptions.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+});
 
 // Add event listeners to checkboxes
 document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(checkbox => {
