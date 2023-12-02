@@ -120,6 +120,7 @@
 
 		.header-controls {
 			flex-direction: column; /* Stack the children vertically */
+			align-items: flex-start; /* Align children to the start of the container (left) */
 			}
 		.count-display {
 			position: absolute; /* This makes the absolute positioning of children relative to this container */
@@ -128,9 +129,8 @@
 
 		.filter-dropdown,
 		.search-container {
-			width: 80%; /* Full width for mobile */
+			width: 70%; /* Full width for mobile */
 			margin-bottom: 10px; /* Add some space between the filter and the search bar */
-			left: -10%;
 			}
 
 		#search-bar {
@@ -207,7 +207,7 @@
 			display: flex;
 			justify-content: space-between; /* This will push the filter to the left and the search bar to the right */
 			align-items: center; /* Align the items vertically */
-			padding: 10px; /* Adjust as needed */
+			padding: 5px; /* Adjust as needed */
 			}
 
 		.search-container {
