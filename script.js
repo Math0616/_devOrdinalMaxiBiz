@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		const galleryItem = document.createElement('div');
 		galleryItem.classList.add('gallery-item');
 
+		// Setting the 'number' data attribute
+		galleryItem.dataset.number = image.number; 
+
 		// Set eyeColor and other optional attributes as data attributes
 		const attributes = ['eyeColor', 'female', 'hat', 'speaking', 'smoking', 'noFace', 'demon', 'threePlusEye', 'lines', 'earphone', 'music', 'hands', 'ghost', 'emoji', 'crown', 'oneEye', 'sick', 'animal', 'alien', 'weapon', 'ape', 'openScalp', 'miner', 'shadow', 'lfg', 'clown', 'hoodie', 'OGHoodies', 'realRef', 'fiction', 'freeRoss', 'letterhead', 'glasses', 'robot', 'punk', 'undead', 'faceCover', 'gasMask'];
 		attributes.forEach(attr => {
@@ -179,3 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	filterGallery(); // Initial call to filterGallery to apply the default state
 });
+
+function searchByNumber() {
+    const searchValue = parseInt(document.getElementById('number-search').value, 10);
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        const itemNumber = parseInt(item.dataset.number, 10);
+        item.style.display = itemNumber === searchValue ? 'block' : 'none';
+    });
+}
