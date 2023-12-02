@@ -144,6 +144,11 @@ document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(che
 });
 
 function filterGallery() {
+	// Ignore filtering if there's a search term
+	if (document.getElementById('search-bar').value.trim()) {
+        return; 
+    }
+
 	const checkedAttributes = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"]:not([name="eyeColor"], [name="no-trait"])'))
 		.filter(checkbox => checkbox.checked)
 		.map(checkbox => checkbox.name);
@@ -182,3 +187,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	filterGallery(); // Initial call to filterGallery to apply the default state
 });
+
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+function searchGallery() {
+    const searchTerm = document.getElementById('search-bar').value.trim();
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        if (!searchTerm || item.dataset.number.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // If the search bar is cleared, return to the previous filter state
+    if (!searchTerm) {
+        filterGallery();
+    }
+}
+
+document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 600));
