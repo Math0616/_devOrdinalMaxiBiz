@@ -212,6 +212,8 @@ function searchGallery() {
     if (!searchTerm) {
         filterGallery();
     }
+	
+	updateCount(); // Update the count display
 }
 
 document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 500));
