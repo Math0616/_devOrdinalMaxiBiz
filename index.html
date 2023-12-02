@@ -117,6 +117,21 @@
 	  	.gallery {
 	    	grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
 	  		}
+
+		.header-controls {
+			flex-direction: column; /* Stack the children vertically */
+			align-items: stretch; /* Stretch children to match the parent's width */
+			}
+
+		.filter-dropdown,
+		.search-container {
+			width: 100%; /* Full width for mobile */
+			margin-bottom: 10px; /* Add some space between the filter and the search bar */
+			}
+
+		#search-bar {
+			/* Adjust padding or other styles if needed for mobile */
+			}
 		}
 
 		/* Media query for mobile screens - adjust "max-width" as needed */

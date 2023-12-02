@@ -206,13 +206,11 @@ function searchGallery() {
         } else {
             item.style.display = 'none';
         }
-		updateCount(); // Update the count display
     });
 
     // If the search bar is cleared, return to the previous filter state
     if (!searchTerm) {
         filterGallery();
-		updateCount(); // Update the count display
     }
 
 }
