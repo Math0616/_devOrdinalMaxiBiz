@@ -214,4 +214,4 @@ function searchGallery() {
     }
 }
 
-document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 600));
+document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 500));

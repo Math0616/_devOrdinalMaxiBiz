@@ -183,6 +183,23 @@
 			background: rgba(255, 165, 0, 0.2);
 			}
 
+		.gallery-header {
+			display: flex;
+			justify-content: flex-end; /* Aligns the search bar to the right */
+			padding: 10px; /* Add some space around the elements */
+			}
+
+		.search-container {
+			max-width: 300px; /* Or any width you prefer */
+			}
+
+		#search-bar {
+			width: 100%;
+			padding: 5px;
+			border-radius: 5px;
+			border: 1px solid #ccc; /* Style as needed */
+			}
+
 		.price-tag {
 			position: absolute;
 			top: 10px;
@@ -255,8 +272,12 @@
 		<label for="no-trait"><input type="checkbox" id="no-trait" name="no-trait"> No Special Traits</label>
 		<!-- Add other checkboxes for each attribute -->
 	</div>
-	<!-- Search Bar -->
-    <input type="text" id="search-bar" placeholder="Search...">
+</div>
+
+<div class="gallery-header">
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search...">
+    </div>
 </div>
 
 <div class="gallery">
