@@ -182,11 +182,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	filterGallery(); // Initial call to filterGallery to apply the default state
 });
-
-function searchByNumber() {
-    const searchValue = parseInt(document.getElementById('number-search').value, 10);
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        const itemNumber = parseInt(item.dataset.number, 10);
-        item.style.display = itemNumber === searchValue ? 'block' : 'none';
-    });
-}
