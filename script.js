@@ -206,14 +206,15 @@ function searchGallery() {
         } else {
             item.style.display = 'none';
         }
+		updateCount(); // Update the count display
     });
 
     // If the search bar is cleared, return to the previous filter state
     if (!searchTerm) {
         filterGallery();
+		updateCount(); // Update the count display
     }
-	
-	updateCount(); // Update the count display
+
 }
 
 document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 500));
