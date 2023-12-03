@@ -854,7 +854,8 @@
 		"tokenId": "c22afd66b95208e6148fb0a35e82d794be25ec6a58212250ac6954b607555c8ci0",
 		"number": 965267,
 		"eyeColor": "blue",
-		"Smoking":true
+		"Smoking":true,
+		"Hat":true
 	},
 	{
 		"tokenId": "c8536e34d8e5b9e85a69bb187c27fd3b6b88cd43eee98f390647beef1c70cee8i0",
