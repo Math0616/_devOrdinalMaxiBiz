@@ -139,7 +139,6 @@
 		"number": 123527,
 		"eyeColor": "red",
 		"Undead":true
-
 	},
 	{
 		"tokenId": "36356825a1afaf0ca478d1895384c1b60915253635b39ea8b3e7477bcc3e2279i0",
@@ -248,7 +247,6 @@
 		"number": 130911,
 		"eyeColor": "red",
 		"Speaking":true
-
 	},
 	{
 		"tokenId": "dfeae9d8d38d14da7e49ba9d00f636c1c288330eb5e0f47a68ad47ae9057ca5ai0",
@@ -290,7 +288,6 @@
 		"eyeColor": "red",
 		"Female": true,
 		"Speaking":true
-
 	},
 	{
 		"tokenId": "27309466e1a7b58d59e3ada6428db2b4ae2dcec48c22536c3274a239a395f4bei0",
@@ -304,7 +301,6 @@
 		"eyeColor": "red",
 		"Female": true,
 		"Speaking":true
-
 	},
 	{
 		"tokenId": "74c471ab99fd2af57297aa468b7de45787458ef94cbb43d96a5f6760335fe826i0",

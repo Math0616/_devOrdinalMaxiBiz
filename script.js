@@ -178,15 +178,24 @@ function hideTooltip() {
 }
 
 function createTooltipContent(image) {
-	let tooltipContent = '';
+    let tooltipContent = '';
+    let hasSpecialTraits = false;
+
     for (const attr in image) {
-        // Check if the attribute's value is true
         if (image.hasOwnProperty(attr) && image[attr] === true) {
-            tooltipContent += `${attr}\n`; // Only add the attribute name
+            tooltipContent += `${attr}\n`; // Each attribute name on a new line
+            hasSpecialTraits = true;
         }
-	}
-	return tooltipContent.trim();
+    }
+
+    // If no special traits are found, display "No Special Traits"
+    if (!hasSpecialTraits) {
+        tooltipContent = 'No Special Traits';
+    }
+
+    return tooltipContent.trim();
 }
+
 
 // Add event listeners to checkboxes
 document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(checkbox => {
