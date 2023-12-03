@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		galleryItem.dataset.number = Array.isArray(image.number) ? image.number.join(', ') : image.number.toString();
 
 		// Set eyeColor and other optional attributes as data attributes
-		const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'No Face', 'Demon', 'Three+ Eyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'One Eye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'Open Scalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OG Hoodies', 'Real Ref', 'Fiction', 'Free Ross', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'Face Cover', 'Gas Mask'];
+		const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
 		attributes.forEach(attr => {
 			if (image[attr]) {
 			galleryItem.dataset[attr] = image[attr];
