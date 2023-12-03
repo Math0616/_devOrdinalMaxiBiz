@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+	console.log("Script loaded and DOM fully parsed");
 	fetch('images.json')
 	.then(response => response.json())
 	.then(data => {
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Add mouseover event listener with a delay for the tooltip
 		img.addEventListener('mouseover', function(event) {
-			console.log("Mouseover on image", image);
+			console.log("Mouseover on image", img);
 			hoverTimeout = setTimeout(function() {
 				showTooltip(event, image);
 			}, 500); // Delay of 1 second
@@ -48,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Add mouseout event listener to hide tooltip and clear the hover timeout
 		img.addEventListener('mouseout', function() {
+			console.log("Mouseout event on image", img);
 			clearTimeout(hoverTimeout);
 			hideTooltip();
 		});
