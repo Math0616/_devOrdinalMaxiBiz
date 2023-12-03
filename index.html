@@ -162,10 +162,6 @@
 			padding-top: 100%; /* Square aspect ratio */
 			}
 	
-		.image-container:hover {
-			background: rgba(255, 165, 0); /* Orange overlay on hover */
-			}
-	
 		.image-container a, .image-container img {
 			position: absolute;
 			top: 0;
@@ -184,23 +180,6 @@
 			height: 100%;
 			object-fit: contain;
 			border-radius: 15px;
-			}
-	
-		.image-container::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: transparent;
-			transition: background-color 0.3s ease;
-			z-index: 2; /* Overlay */
-			border-radius: 15px;
-			}
-	
-		.image-container:hover::before {
-			background: rgba(255, 165, 0, 0.2);
 			}
 
 		.header-controls {
