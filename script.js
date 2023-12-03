@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Add mouseover event listener with a delay for the tooltip
 		img.addEventListener('mouseover', function(event) {
+			console.log("Mouseover on image", image);
 			hoverTimeout = setTimeout(function() {
 				showTooltip(event, image);
 			}, 1000); // Delay of 1 second
@@ -155,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to show the tooltip
 function showTooltip(event, image) {
+	console.log("Showing tooltip for", image);
 	const tooltip = document.createElement('div');
 	tooltip.className = 'tooltip';
 	tooltip.textContent = createTooltipContent(image); // Use the same createTooltipContent function from above
