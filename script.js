@@ -160,9 +160,12 @@ function showTooltip(event, image) {
 	tooltip.textContent = createTooltipContent(image); // Use the same createTooltipContent function from above
 	document.body.appendChild(tooltip);
   
-	// Position the tooltip under the cursor
-    tooltip.style.left = `${event.clientX}px`;
-    tooltip.style.top = `${event.clientY}px`;
+	// Get the bounding rectangle of the image
+    const imgRect = event.target.getBoundingClientRect();
+
+    // Position the tooltip at the top left corner of the image
+    tooltip.style.left = `${imgRect.left + window.scrollX}px`;
+    tooltip.style.top = `${imgRect.top + window.scrollY}px`;
     tooltip.style.display = 'block';
   }
   
@@ -175,7 +178,7 @@ function hideTooltip() {
 }
 
 function createTooltipContent(image) {
-	let tooltipContent = 'Attributes:\n';
+	let tooltipContent = '';
     for (const attr in image) {
         // Check if the attribute's value is true
         if (image.hasOwnProperty(attr) && image[attr] === true) {
