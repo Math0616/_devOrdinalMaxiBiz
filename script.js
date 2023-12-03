@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		galleryItem.classList.add('gallery-item');
 
 		// Setting the 'number' data attribute
-		galleryItem.dataset.number = image.number; 
+		galleryItem.dataset.number = Array.isArray(image.number) ? image.number.join(', ') : image.number.toString();
 
 		// Set eyeColor and other optional attributes as data attributes
 		const attributes = ['eyeColor', 'female', 'hat', 'speaking', 'smoking', 'noFace', 'demon', 'threePlusEye', 'lines', 'earphone', 'music', 'hands', 'ghost', 'emoji', 'crown', 'oneEye', 'sick', 'animal', 'alien', 'weapon', 'ape', 'openScalp', 'miner', 'shadow', 'lfg', 'clown', 'hoodie', 'OGHoodies', 'realRef', 'fiction', 'freeRoss', 'letterhead', 'glasses', 'robot', 'punk', 'undead', 'faceCover', 'gasMask'];
@@ -201,11 +201,10 @@ function debounce(func, delay) {
 function searchGallery() {
     const searchTerm = document.getElementById('search-bar').value.trim();
     document.querySelectorAll('.gallery-item').forEach(item => {
-        if (!searchTerm || item.dataset.number.includes(searchTerm)) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
+        // Split the numbers by comma and trim whitespace, then check if any matches the searchTerm exactly
+        const numbers = item.dataset.number.split(',').map(n => n.trim());
+        const match = numbers.some(number => number === searchTerm);
+        item.style.display = match ? 'block' : 'none';
     });
 
     // If the search bar is cleared, return to the previous filter state
