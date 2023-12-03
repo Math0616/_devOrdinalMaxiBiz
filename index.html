@@ -237,6 +237,32 @@
 			font-weight: bold;
 			z-index: 3; /* Ensure this is above other elements */
 			}
+
+		.tooltip {
+			display: none;
+			position: absolute;
+			z-index: 10;
+			padding: 10px;
+			background: white;
+			color: black;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 0.9em;
+			/* Add other styles like box-shadow, max-width, etc., as needed */
+			}
+
+		/* Optional: Add an arrow to the tooltip */
+		.tooltip::after {
+			content: ' ';
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #ddd transparent transparent transparent;
+			}
+
 	</style>
 </head>
 <body>

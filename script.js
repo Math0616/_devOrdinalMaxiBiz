@@ -36,6 +36,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		img.alt = `Ordinal Maxi Biz #${image.tokenId}`;
 		img.classList.add('lazyload');
 
+		let hoverTimeout; // Variable to store the hover state timeout
+
+		// Add mouseover event listener with a delay for the tooltip
+		img.addEventListener('mouseover', function(event) {
+			hoverTimeout = setTimeout(function() {
+				showTooltip(event, image);
+			}, 1000); // Delay of 1 second
+		});
+
+		// Add mouseout event listener to hide tooltip and clear the hover timeout
+		img.addEventListener('mouseout', function() {
+			clearTimeout(hoverTimeout);
+			hideTooltip();
+		});
+
 		// Append image to its container
 		imageContainer.appendChild(img);
 
@@ -137,6 +152,38 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
     });
 });
+
+// Function to show the tooltip
+function showTooltip(event, image) {
+	const tooltip = document.createElement('div');
+	tooltip.className = 'tooltip';
+	tooltip.textContent = createTooltipContent(image); // Use the same createTooltipContent function from above
+	document.body.appendChild(tooltip);
+  
+	// Position the tooltip
+	const rect = event.target.getBoundingClientRect();
+	tooltip.style.left = `${rect.left + window.scrollX}px`;
+	tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`; // 10px below the image
+	tooltip.style.display = 'block';
+  }
+  
+  // Function to hide the tooltip
+  function hideTooltip() {
+	const tooltip = document.querySelector('.tooltip');
+	if (tooltip) {
+	  tooltip.remove();
+	}
+  }
+
+  function createTooltipContent(image) {
+    let tooltipContent = 'Attributes:\n';
+    for (const attr in image) {
+        if (image.hasOwnProperty(attr) && attr !== 'tokenId' && attr !== 'number') {
+            tooltipContent += `${attr}: ${image[attr]}\n`;
+        }
+    }
+    return tooltipContent.trim();
+}
 
 // Add event listeners to checkboxes
 document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(checkbox => {
