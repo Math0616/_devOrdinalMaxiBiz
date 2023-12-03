@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		galleryItem.dataset.number = Array.isArray(image.number) ? image.number.join(', ') : image.number.toString();
 
 		// Set eyeColor and other optional attributes as data attributes
-		const attributes = ['eyeColor', 'female', 'hat', 'speaking', 'smoking', 'noFace', 'demon', 'threePlusEye', 'lines', 'earphone', 'music', 'hands', 'ghost', 'emoji', 'crown', 'oneEye', 'sick', 'animal', 'alien', 'weapon', 'ape', 'openScalp', 'miner', 'shadow', 'lfg', 'clown', 'hoodie', 'OGHoodies', 'realRef', 'fiction', 'freeRoss', 'letterhead', 'glasses', 'robot', 'punk', 'undead', 'faceCover', 'gasMask'];
+		const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'No Face', 'Demon', 'Three+ Eyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'One Eye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'Open Scalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OG Hoodies', 'Real Ref', 'Fiction', 'Free Ross', 'Letter Head', 'Glasses', 'Robot', 'Punk', 'Undead', 'Face Cover', 'Gas Mask'];
 		attributes.forEach(attr => {
 			if (image[attr]) {
 			galleryItem.dataset[attr] = image[attr];
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		img.addEventListener('mouseover', function(event) {
 			hoverTimeout = setTimeout(function() {
 				showTooltip(event, image);
-			}, 500); // Delay of 1 second
+			}, 1000); // Delay of 1 second
 		});
 
 		// Add mouseout event listener to hide tooltip and clear the hover timeout
