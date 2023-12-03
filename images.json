@@ -5661,7 +5661,8 @@
 		"tokenId": "4c752101fce0efb246e2ccbd128e8c9d1ef102c4258f4f6117b36b7c63f49b48i0",
 		"number": [1388,11181288],
 		"eyeColor": "green",
-		"Clown": true
+		"Clown": true,
+		"Hat": true
 	},
 	{
 		"tokenId": "6e401e8d9749ceadfd67d0b74bec56e55b7d31343f4f2bda0cdb0e4ffcbdce0ci0",
@@ -12714,7 +12715,8 @@
 		"tokenId": "7a065c556d5789a3985667291d6df67c04e3c83fbea62aedc0c4e79749f09ca9i0",
 		"number": [210,11523592],
 		"eyeColor": "green",
-		"Clown": true
+		"Clown": true,
+		"Hat": true
 	},
 	{
 		"tokenId": "189459114d8f452727ad5e634bde27e96a78c77f735e0c779c5c44254d893eadi0",
