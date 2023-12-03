@@ -181,10 +181,11 @@ function hideTooltip() {
 
 function createTooltipContent(image) {
 	let tooltipContent = 'Attributes:\n';
-	for (const attr in image) {
-		if (image.hasOwnProperty(attr) && attr !== 'tokenId' && attr !== 'number') {
-			tooltipContent += `${attr}: ${image[attr]}\n`;
-		}
+    for (const attr in image) {
+        // Check if the attribute's value is true
+        if (image.hasOwnProperty(attr) && image[attr] === true) {
+            tooltipContent += `${attr}\n`; // Only add the attribute name
+        }
 	}
 	return tooltipContent.trim();
 }
