@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log("Mouseover on image", image);
 			hoverTimeout = setTimeout(function() {
 				showTooltip(event, image);
-			}, 1000); // Delay of 1 second
+			}, 500); // Delay of 1 second
 		});
 
 		// Add mouseout event listener to hide tooltip and clear the hover timeout
