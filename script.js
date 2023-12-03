@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-	console.log("Script loaded and DOM fully parsed");
 	fetch('images.json')
 	.then(response => response.json())
 	.then(data => {
@@ -41,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Add mouseover event listener with a delay for the tooltip
 		img.addEventListener('mouseover', function(event) {
-			console.log("Mouseover on image", img);
 			hoverTimeout = setTimeout(function() {
 				showTooltip(event, image);
 			}, 500); // Delay of 1 second
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Add mouseout event listener to hide tooltip and clear the hover timeout
 		img.addEventListener('mouseout', function() {
-			console.log("Mouseout event on image", img);
 			clearTimeout(hoverTimeout);
 			hideTooltip();
 		});
@@ -158,17 +155,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to show the tooltip
 function showTooltip(event, image) {
-	console.log("Showing tooltip for", image);
 	const tooltip = document.createElement('div');
 	tooltip.className = 'tooltip';
 	tooltip.textContent = createTooltipContent(image); // Use the same createTooltipContent function from above
 	document.body.appendChild(tooltip);
   
-	// Position the tooltip
-	const rect = event.target.getBoundingClientRect();
-	tooltip.style.left = `${rect.left + window.scrollX}px`;
-	tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`; // 10px below the image
-	tooltip.style.display = 'block';
+	// Position the tooltip under the cursor
+    tooltip.style.left = `${event.clientX + 10}px`; // 10px to the right of the cursor
+    tooltip.style.top = `${event.clientY + 10}px`; // 10px below the cursor
+    tooltip.style.display = 'block';
   }
   
 // Function to hide the tooltip
