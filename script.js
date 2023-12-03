@@ -167,22 +167,22 @@ function showTooltip(event, image) {
 	tooltip.style.display = 'block';
   }
   
-  // Function to hide the tooltip
-  function hideTooltip() {
+// Function to hide the tooltip
+function hideTooltip() {
 	const tooltip = document.querySelector('.tooltip');
 	if (tooltip) {
-	  tooltip.remove();
+	tooltip.remove();
 	}
-  }
+}
 
-  function createTooltipContent(image) {
-    let tooltipContent = 'Attributes:\n';
-    for (const attr in image) {
-        if (image.hasOwnProperty(attr) && attr !== 'tokenId' && attr !== 'number') {
-            tooltipContent += `${attr}: ${image[attr]}\n`;
-        }
-    }
-    return tooltipContent.trim();
+function createTooltipContent(image) {
+	let tooltipContent = 'Attributes:\n';
+	for (const attr in image) {
+		if (image.hasOwnProperty(attr) && attr !== 'tokenId' && attr !== 'number') {
+			tooltipContent += `${attr}: ${image[attr]}\n`;
+		}
+	}
+	return tooltipContent.trim();
 }
 
 // Add event listeners to checkboxes
