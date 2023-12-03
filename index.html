@@ -220,28 +220,16 @@
 		.tooltip {
 			display: none;
 			position: absolute;
+			white-space: pre-line; /* This will make \n work as expected */
 			z-index: 10;
 			padding: 10px;
-			background: #e67d2286;
+			background: #e67d22c9;
 			color: black;
-			border: 1px solid #ddd;
+			border: 1px solid #e67e22;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
 			border-radius: 5px;
 			font-size: 0.9em;
-			/* Add other styles like box-shadow, max-width, etc., as needed */
 			}
-
-		/* Optional: Add an arrow to the tooltip */
-		.tooltip::after {
-			content: ' ';
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			margin-left: -5px;
-			border-width: 5px;
-			border-style: solid;
-			border-color: #ddd transparent transparent transparent;
-			}
-
 	</style>
 </head>
 <body>

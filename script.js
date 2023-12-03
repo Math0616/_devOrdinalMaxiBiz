@@ -161,8 +161,8 @@ function showTooltip(event, image) {
 	document.body.appendChild(tooltip);
   
 	// Position the tooltip under the cursor
-    tooltip.style.left = `${event.clientX + 10}px`; // 10px to the right of the cursor
-    tooltip.style.top = `${event.clientY + 10}px`; // 10px below the cursor
+    tooltip.style.left = `${event.clientX}px`;
+    tooltip.style.top = `${event.clientY}px`;
     tooltip.style.display = 'block';
   }
   
