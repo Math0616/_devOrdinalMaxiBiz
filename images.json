@@ -1246,7 +1246,8 @@
 		"tokenId": "f903add2380d98b38f3e33925b6f8d88ba8ce9abc60a89351d1c865ba2a25451i0",
 		"number": 965778,
 		"eyeColor": "blue",
-		"Hat":true
+		"Hat":true,
+		"RealRef":true
 	},
 	{
 		"tokenId": "b840dbe4be8fa03c826f91fb5f330b49415beecf71005c9c5d9e05413897f6b3i0",
