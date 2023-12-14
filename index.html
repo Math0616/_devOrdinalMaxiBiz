@@ -232,9 +232,12 @@
 			font-weight: bold; /* Make the text bold */
 			}
 
-		#data-container {
-			text-align: center;
-			margin-top: 20px; /* Adjust this value as needed */
+			#data-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 20px; /* Adjust this value as needed */
+				gap: 20px; /* This adds space between each data point */
 			}
 
 		#floorPrice, #owners, #totalListed {
@@ -304,10 +307,10 @@
 		</div>
 	</div>
 
-	<div id="data-container">
-        <div id="floorPrice">Floor Price: Loading...</div>
-        <div id="owners">Owners: Loading...</div>
-        <div id="totalListed">Total Listed: Loading...</div>
+    <div id="data-container">
+        <div><span>Floor: </span><span id="floorPrice">Loading...</span></div>
+        <div><span>Owners: </span><span id="owners">Loading...</span></div>
+        <div><span>Listed: </span><span id="totalListed">Loading...</span></div>
     </div>
 
 	<div class="search-container">
