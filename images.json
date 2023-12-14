@@ -4074,7 +4074,9 @@
 		"number": [1682,11097589],
 		"eyeColor": "green",
 		"Smoking": true,
-		"Hoodie": true
+		"Hoodie": true,
+		"Hat": true,
+		"Earphone": true
 	},
 	{
 		"tokenId": "5193cad7831d000d6f22007c24b6e01f7aa31144655365becd8cc6dc97527709i0",
