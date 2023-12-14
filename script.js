@@ -285,10 +285,17 @@ fetch('https://ordinalmaxibiz.vercel.app/api/ombcollection')
 	})
 	.then(data => {
 		console.log('Data received:', data);
-		document.getElementById('floorPrice').textContent = data.floorPrice;
+		document.getElementById('floorPrice').textContent = formatBitcoin(data.floorPrice);
 		document.getElementById('owners').textContent = data.owners;
 		document.getElementById('totalListed').textContent = data.totalListed;
 	})
 	.catch(error => {
 		console.error('Error fetching data:', error);
 	});
+
+function formatBitcoin(value) {
+	const bitcoinValue = value / 100000000; // assuming value is in Satoshi
+	const formattedValue = bitcoinValue.toFixed(8); // Convert to string with 8 decimal places
+	// Remove trailing zeros, but ensure at least two decimal places
+	return `₿${formattedValue.replace(/(\.\d*?[1-9])0+$/, '$1').replace(/\.(?=[^.]*$)/, '.00')}`;
+}
