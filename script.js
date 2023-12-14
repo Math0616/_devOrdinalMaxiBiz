@@ -274,3 +274,21 @@ function searchGallery() {
 }
 
 document.getElementById('search-bar').addEventListener('input', debounce(searchGallery, 500));
+
+fetch('https://ordinalmaxibiz.vercel.app/api/ombcollection')
+	.then(response => {
+		console.log('Response received:', response);
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+		return response.json();
+	})
+	.then(data => {
+		console.log('Data received:', data);
+		document.getElementById('floorPrice').textContent = data.floorPrice;
+		document.getElementById('owners').textContent = data.owners;
+		document.getElementById('totalListed').textContent = data.totalListed;
+	})
+	.catch(error => {
+		console.error('Error fetching data:', error);
+	});
