@@ -118,9 +118,6 @@ function setupFilterEventListeners() {
     document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(checkbox => {
         checkbox.addEventListener('change', filterGallery);
     });
-
-    // Event listener for the listedPrice filter
-    document.getElementById('filter-listedPrice').addEventListener('change', filterGallery);
 }
 
 function updateCount() {
@@ -241,8 +238,6 @@ function filterGallery() {
 		.map(checkbox => checkbox.value);
 	const isNoTraitChecked = document.getElementById('no-trait').checked;
 
-	// Additional filter for listedPrice
-    const isListedPriceChecked = document.getElementById('filter-listedPrice').checked;
 	document.querySelectorAll('.gallery-item').forEach(item => {
 		const matchesEyeColor = checkedEyeColors.length === 0 || checkedEyeColors.includes(item.dataset.eyeColor);
 
@@ -257,11 +252,6 @@ function filterGallery() {
 			// If other attribute filters are checked, ensure they all match
 			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
 		}
-
-		// Apply listedPrice filter
-        if (isListedPriceChecked && !item.dataset.listedPrice) {
-            shouldDisplay = false;
-        }
 
 		// If no filters are checked, shouldDisplay remains true based on the matchesEyeColor result
 		item.style.display = shouldDisplay ? 'block' : 'none';
