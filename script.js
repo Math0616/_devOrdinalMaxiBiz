@@ -257,7 +257,7 @@ function filterGallery() {
 		if (isNoTraitChecked) {
 			// If "No Trait" is checked, count the attributes and check if only eyeColor is present
 			const attributeCount = Object.keys(item.dataset).length;
-			shouldDisplay = shouldDisplay && (attributeCount === 3); // This assumes eyeColor and number are the only attributes
+			shouldDisplay = shouldDisplay && (attributeCount === 4); // This assumes id, eyeColor, number and listedPrice are the only attributes
 		} else if (checkedAttributes.length > 0) {
 			// If other attribute filters are checked, ensure they all match
 			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
