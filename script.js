@@ -93,6 +93,9 @@ function createGallery(mergedData) {
 	// Append gallery item to gallery
 	gallery.appendChild(galleryItem);
 
+	// Add this console.log to check the dataset attributes
+	//console.log(`Gallery Item ID: ${image.id}`, galleryItem.dataset);
+
 	});
 	
 	initializeLazyLoad(); // After adding all images to the gallery, initialize lazy loading
@@ -250,7 +253,7 @@ function filterGallery() {
     const isListedPriceChecked = document.getElementById('filter-listedPrice').checked;
 
 	document.querySelectorAll('.gallery-item').forEach(item => {
-		console.log(item.dataset); // Log the entire dataset for the item
+		console.log(`id: ${item.id}`, item.dataset);
 
 		const matchesEyeColor = checkedEyeColors.length === 0 || checkedEyeColors.includes(item.dataset.eyeColor);
 
