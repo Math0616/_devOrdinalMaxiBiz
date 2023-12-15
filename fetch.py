@@ -14,7 +14,7 @@ def format_price(price):
         price_str += '0'
     return price_str
 
-def fetch_tokens(api_key, limit=40, max_tokens=1000):
+def fetch_tokens(api_key, limit=40, max_tokens=2091):
     base_url = "https://api-mainnet.magiceden.dev/v2/ord/btc/tokens"
     headers = {
         "accept": "application/json",
