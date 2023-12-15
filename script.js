@@ -84,10 +84,10 @@ function createGallery(mergedData) {
 	galleryItem.appendChild(link);
 
 	// Price tag with Bitcoin symbol
-	if (image.price) {
+	if (image.listedPrice && image.listedPrice !== 'undefined') {
 		const priceTag = document.createElement('div');
 		priceTag.classList.add('price-tag');
-		priceTag.textContent = `₿${image.price}`;
+		priceTag.textContent = `₿${image.listedPrice}`;
 		galleryItem.appendChild(priceTag);
 	}
 
