@@ -265,9 +265,10 @@ function filterGallery() {
 			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
 		}
 		
-		// Apply the listedPrice filter
+		// Check if the listedPrice filter is applied
         if (isListedPriceChecked) {
-            shouldDisplay = shouldDisplay && item.dataset.listedPrice !== undefined && item.dataset.listedPrice !== '';
+            // Check if the item has a listedPrice and it is not undefined
+            shouldDisplay = shouldDisplay && item.dataset.listedPrice !== 'undefined' && item.dataset.listedPrice !== '';
         }
 
 		// If no filters are checked, shouldDisplay remains true based on the matchesEyeColor result
