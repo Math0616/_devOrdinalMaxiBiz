@@ -119,8 +119,8 @@
 	  		}
 
 		.header-controls {
-			flex-direction: column;
-      		align-items: flex-start;
+			flex-direction: column; /* Stack the children vertically */
+			align-items: left; /* Align children left */
 			}
 		.count-display {
 			position: relative; /* This makes the absolute positioning of children relative to this container */
@@ -128,28 +128,18 @@
 			margin-bottom: 10px;
 			}
 
-		.filter-and-count-container {
-			width: 100%;
-			justify-content: space-between; /* Align button and count-display on opposite ends */
-			}
-
-		.listed-only-label {
-			order: 2; /* Position checkbox between button and search bar */
-			margin-left: 0;
-			justify-content: flex-end;
-			width: 100%; /* Full width to push checkbox to the right */
-			display: flex;
-			justify-content: space-between; /* Align label and checkbox on opposite ends */
-			}
-
+		.filter-dropdown,
 		.search-container {
-			order: 3; /* Search bar below the checkbox */
 			width: 100%; /* Full width for mobile */
 			}
 
 		#search-bar {
 			margin-top: 10px;
 			width: 70%; /* width for mobile */
+			}
+
+		.search-and-filter-container {
+			justify-content: space-between; /* Spreads out the children on smaller screens */
 			}
 		}
 
@@ -198,16 +188,13 @@
 
 		.header-controls {
 			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			align-items: center;
-			padding: 5px;
+			justify-content: space-between; /* This will push the filter to the left and the search bar to the right */
+			align-items: center; /* Align the items vertically */
+			padding: 5px; /* Adjust as needed */
 			}
 
 		.search-container {
-			order: 3; /* Ensure search bar is last in the flex container on mobile */
-			width: 100%; /* Full width for mobile */
-			margin-top: 10px;
+			max-width: 300px; /* Or any width you prefer */
 			}
 
 		#search-bar {
@@ -221,20 +208,18 @@
 			/* Other styles like font size, margin, etc., as needed */
 			}
 
-		.listed-only-label {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			margin-left: auto; /* This pushes the checkbox to the far right on mobile */
-			color: white;
-			cursor: pointer;
+		.search-and-filter-container {
+			display: flex; /* This will arrange children inline */
+			align-items: center; /* This will vertically center the children */
+			justify-content: flex-end; /* This will align the children to the end of the container */
+			gap: 10px; /* This adds some space between the search bar and the checkbox */
 			}
 
-		.filter-and-count-container {
-			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			gap: 10px;
+		.listed-only-label {
+			display: flex; /* Aligns the checkbox and label text inline */
+			align-items: center; /* Centers them vertically */
+			color: white; /* Text color */
+			cursor: pointer; /* Changes cursor to pointer when hovering over the label */
 			}
 
 		.price-tag {
@@ -291,8 +276,9 @@
 </div>		
 
 <div class="header-controls">
-    <div class="filter-and-count-container">
-        <button id="filter-button">Traits Filter</button>
+	<div class="filter-dropdown">
+		<div id="count-display" class="count-display">Number of OMBs Displayed</div>
+		<button id="filter-button">Traits Filter</button>
 		<div id="filter-options" class="dropdown-content">
 			<label for="eyeColorRed"><input type="checkbox" id="eyeColorRed" name="eyeColor" value="red"> Red Eyes</label>
 			<label for="eyeColorBlue"><input type="checkbox" id="eyeColorBlue" name="eyeColor" value="blue"> Blue Eyes</label>
@@ -337,18 +323,19 @@
 			<label for="no-trait"><input type="checkbox" id="no-trait" name="no-trait"> No Special Traits</label>
 			<!-- Add other checkboxes for each attribute -->
 		</div>
-		<div id="count-display" class="count-display"># of OMBs displayed</div>
 	</div>
 
-	<label for="filter-listedPrice" class="listed-only-label">
-		<input type="checkbox" id="filter-listedPrice" name="filter-listedPrice">
-		Listed Only
-	</label>
-	
-	<div class="search-container">
-		<input type="text" id="search-bar" placeholder="Search by #">
-	</div>
-
+	<!-- Search container that includes both the search bar and the 'Listed Only' checkbox -->
+    <div class="search-and-filter-container">
+        <label for="filter-listedPrice" class="listed-only-label">
+            <input type="checkbox" id="filter-listedPrice" name="filter-listedPrice">
+            Listed Only
+        </label>
+        
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search by #">
+        </div>
+    </div>
 
 </div>
 
