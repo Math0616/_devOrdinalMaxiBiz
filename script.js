@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	.then(data => {
 		const gallery = document.querySelector('.gallery');
 		data.forEach(image => {
-		const imageUrl = `https://ord-mirror.magiceden.dev/content/${image.tokenId}`;
+		const imageUrl = `https://ord-mirror.magiceden.dev/content/${image.id}`;
 
 		// Create gallery item container
 		const galleryItem = document.createElement('div');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Create link element
 		const link = document.createElement('a');
-		link.href = `https://magiceden.io/ordinals/item-details/${image.tokenId}`;
+		link.href = `https://magiceden.io/ordinals/item-details/${image.id}`;
 		link.target = "_blank";
 
 		// Create image container
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Create and set image element
 		const img = document.createElement('img');
 		img.dataset.src = imageUrl;
-		img.alt = `Ordinal Maxi Biz #${image.tokenId}`;
+		img.alt = `Ordinal Maxi Biz #${image.id}`;
 		img.classList.add('lazyload');
 
 		let hoverTimeout; // Variable to store the hover state timeout
