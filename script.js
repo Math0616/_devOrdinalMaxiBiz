@@ -246,8 +246,6 @@ function filterGallery() {
 	const checkedEyeColors = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"][name="eyeColor"]:checked'))
 		.map(checkbox => checkbox.value);
 	const isNoTraitChecked = document.getElementById('no-trait').checked;
-
-	// Additional filter for listedPrice
     const isListedPriceChecked = document.getElementById('filter-listedPrice').checked;
 
 	document.querySelectorAll('.gallery-item').forEach(item => {
@@ -256,19 +254,17 @@ function filterGallery() {
 		// Start with shouldDisplay set to the result of matchesEyeColor
 		let shouldDisplay = matchesEyeColor;
 
-		if (isNoTraitChecked) {
-			// If "No Trait" is checked, count the attributes and check if only eyeColor is present
-			const attributeCount = Object.keys(item.dataset).length;
-			shouldDisplay = shouldDisplay && (attributeCount === 2); // This assumes eyeColor and number are the only attributes
-		} else if (checkedAttributes.length > 0) {
-			// If other attribute filters are checked, ensure they all match
-			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
-		}
+		// Apply the no-trait filter
+        if (isNoTraitChecked) {
+            // Check if the item has any traits. Assuming 'number' and 'id' are not considered traits.
+            const traits = Object.keys(item.dataset).filter(key => !['id', 'number', 'listedPrice'].includes(key));
+            shouldDisplay = traits.length === 0; // No traits present
+        }
 		
-		// Check if the listedPrice filter is applied
-        if (isListedPriceChecked) {
-            // Check if the item has a listedPrice and it is not undefined
-            shouldDisplay = shouldDisplay && item.dataset.listedPrice !== 'undefined' && item.dataset.listedPrice !== '';
+		// Apply the listedPrice filter only if shouldDisplay is still true
+        if (shouldDisplay && isListedPriceChecked) {
+            // Ensure the listedPrice is a valid number
+            shouldDisplay = item.dataset.listedPrice !== 'undefined' && item.dataset.listedPrice !== '';
         }
 
 		// If no filters are checked, shouldDisplay remains true based on the matchesEyeColor result
