@@ -33,7 +33,7 @@ function createGallery(mergedData) {
 	galleryItem.dataset.number = Array.isArray(image.number) ? image.number.join(', ') : image.number.toString();
 
 	// Set eyeColor and other optional attributes as data attributes
-	const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
+	const attributes = ['listedPrice', 'eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
 	attributes.forEach(attr => {
 		if (image[attr]) {
 		galleryItem.dataset[attr] = image[attr];
@@ -257,7 +257,7 @@ function filterGallery() {
 			// If other attribute filters are checked, ensure they all match
 			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
 		}
-		
+
 		// Apply listedPrice filter
         if (isListedPriceChecked && !item.dataset.listedPrice) {
             shouldDisplay = false;
