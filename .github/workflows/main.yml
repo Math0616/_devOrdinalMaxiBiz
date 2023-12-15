@@ -1,0 +1,36 @@
+name: Run Python Script
+
+on:
+  schedule:
+    # Runs every 3 hours
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    env:
+      MAGICEDEN_API_KEY: ${{ secrets.MAGICEDEN_API_KEY }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x' # Specify the Python version
+
+    - name: Install dependencies
+      run: |
+        pip install requests tqdm
+
+    - name: Run the script
+      run: python fetch.py
+
+    - name: Commit and push if changes
+      run: |
+        git config --global user.email "contact@theapegang.com"
+        git config --global user.name "Math0616"
+        git add -A
+        git commit -m "Update data" -a || echo "No changes to commit"
+        git push
