@@ -96,6 +96,10 @@ function createGallery(mergedData) {
 	
 	initializeLazyLoad(); // After adding all images to the gallery, initialize lazy loading
 	updateCount(); // This will update the count when the page loads
+
+	// Add this console.log to check the dataset attributes
+	console.log(`Gallery Item ID: ${image.id}`, galleryItem.dataset);
+
 }
 
 function initializeLazyLoad() {
