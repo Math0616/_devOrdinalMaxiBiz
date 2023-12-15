@@ -34,6 +34,7 @@ function createGallery(mergedData) {
 
 	// Set the listedPrice data attribute, even if it's undefined
 	galleryItem.dataset.listedPrice = image.listedPrice;
+	galleryItem.dataset.id = image.id;
 
 	// Set eyeColor and other optional attributes as data attributes
 	const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
@@ -253,7 +254,7 @@ function filterGallery() {
     const isListedPriceChecked = document.getElementById('filter-listedPrice').checked;
 
 	document.querySelectorAll('.gallery-item').forEach(item => {
-		console.log(`id: ${item.id}`, item.dataset);
+		console.log(item.dataset);
 
 		const matchesEyeColor = checkedEyeColors.length === 0 || checkedEyeColors.includes(item.dataset.eyeColor);
 
