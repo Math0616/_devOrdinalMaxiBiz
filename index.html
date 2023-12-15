@@ -191,6 +191,8 @@
 
 		.search-container {
 			max-width: 300px; /* Or any width you prefer */
+			align-items: left; /* Align children left */
+			display: inline-block; /* Allows text-align center in parent to work */
 			}
 
 		#search-bar {
@@ -232,17 +234,12 @@
 			font-weight: bold; /* Make the text bold */
 			}
 
-			#data-container {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin-top: 20px; /* Adjust this value as needed */
-				gap: 20px; /* This adds space between each data point */
-			}
-
-		#floorPrice, #owners, #totalListed {
-			margin: 5px 0;
-			/* Add additional styling as needed */
+		#data-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px; /* Adjust this value as needed */
+			gap: 20px; /* This adds space between each data point */
 			}
 	</style>
 </head>
