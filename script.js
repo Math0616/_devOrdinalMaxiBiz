@@ -294,8 +294,20 @@ fetch('https://ordinalmaxibiz.vercel.app/api/ombcollection')
 	});
 
 function formatBitcoin(value) {
-	const bitcoinValue = value / 100000000; // assuming value is in Satoshi
-	const formattedValue = bitcoinValue.toFixed(8); // Convert to string with 8 decimal places
-	// Remove trailing zeros, but ensure at least two decimal places
-	return `₿${formattedValue.replace(/(\.\d*?[1-9])0+$/, '$1').replace(/\.(?=[^.]*$)/, '.00')}`;
+	const bitcoinValue = value / 100000000; // Convert Satoshi to Bitcoin
+
+	// Convert to string with at least 2 decimal places
+	let formattedValue = bitcoinValue.toFixed(8); 
+
+	// Remove unnecessary trailing zeros
+	formattedValue = formattedValue.replace(/(\.\d*?[1-9])0+$/, '$1');
+
+	// Ensure at least two decimal places
+	if (!formattedValue.includes('.')) {
+		formattedValue += '.00';
+	} else if (/(.*\.\d{0,1})$/.test(formattedValue)) {
+		formattedValue += '0';
+	}
+
+	return `₿${formattedValue}`;
 }
