@@ -271,8 +271,6 @@ function filterGallery() {
 
 		// If no filters are checked, shouldDisplay remains true based on the matchesEyeColor result
 		item.style.display = shouldDisplay ? 'block' : 'none';
-
-		console.log(`ID: ${item.dataset.id}, Display: ${shouldDisplay}, Listed Price: ${item.dataset.listedPrice}`);
 	});
 
 	updateCount(); // Call updateCount after filtering is done to update the display count
