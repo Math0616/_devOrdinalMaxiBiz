@@ -278,6 +278,7 @@ function filterGallery() {
         gallery.innerHTML = '';
         filteredAndSortedItems.forEach(item => gallery.appendChild(item));
     } else {
+		item.style.display = shouldDisplay ? 'block' : 'none';
         // When 'Listed Only' is unchecked, just apply the normal trait filters
         // No need to sort by number, as they are already in the correct order in the DOM
     }
