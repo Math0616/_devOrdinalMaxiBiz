@@ -118,9 +118,13 @@ function createGallery(mergedData) {
 
 }
 
-function extractSecondNumber(numberString) {
+function extractSecondNumber(numberData) {
+    // Ensure numberData is a string
+    let numberString = String(numberData);
+
     // Split the number string by commas and trim each part
     let numbers = numberString.split(',').map(n => n.trim());
+
     // Use the second number if available, otherwise the first
     return numbers.length > 1 ? parseInt(numbers[1], 10) : parseInt(numbers[0], 10);
 }
