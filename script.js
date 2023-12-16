@@ -21,19 +21,22 @@ function mergeData(imagesData, tokensData) {
 }
 
 function createGallery(mergedData) {
-	// Sort mergedData by listedPrice, and then by number if listedPrice is undefined or not present
-	mergedData.sort((a, b) => {
-		let aPrice = a.listedPrice !== 'undefined' && a.listedPrice !== undefined ? parseFloat(a.listedPrice) : Infinity;
-		let bPrice = b.listedPrice !== 'undefined' && b.listedPrice !== undefined ? parseFloat(b.listedPrice) : Infinity;
+    // Sort mergedData by listedPrice, and then by the second number if listedPrice is undefined or not present
+    mergedData.sort((a, b) => {
+        let aPrice = a.listedPrice !== 'undefined' && a.listedPrice !== undefined ? parseFloat(a.listedPrice) : Infinity;
+        let bPrice = b.listedPrice !== 'undefined' && b.listedPrice !== undefined ? parseFloat(b.listedPrice) : Infinity;
 
-		if (aPrice === Infinity && bPrice === Infinity) {
-			// If both prices are undefined, sort by number
-			return parseInt(a.number, 10) - parseInt(b.number, 10);
-		} else {
-			// Sort by price when available
-			return aPrice - bPrice;
-		}
-	});
+        if (aPrice === Infinity && bPrice === Infinity) {
+            // Extract the second number if it exists, otherwise use the first/only number
+            let aNumber = extractSecondNumber(a.number);
+            let bNumber = extractSecondNumber(b.number);
+
+            return aNumber - bNumber;
+        } else {
+            // Sort by price when available
+            return aPrice - bPrice;
+        }
+    });
 
     const gallery = document.querySelector('.gallery');
     mergedData.forEach(image => {
@@ -113,6 +116,13 @@ function createGallery(mergedData) {
 	initializeLazyLoad(); // After adding all images to the gallery, initialize lazy loading
 	updateCount(); // This will update the count when the page loads
 
+}
+
+function extractSecondNumber(numberString) {
+    // Split the number string by commas and trim each part
+    let numbers = numberString.split(',').map(n => n.trim());
+    // Use the second number if available, otherwise the first
+    return numbers.length > 1 ? parseInt(numbers[1], 10) : parseInt(numbers[0], 10);
 }
 
 function initializeLazyLoad() {
