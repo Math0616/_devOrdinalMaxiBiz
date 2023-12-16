@@ -269,15 +269,14 @@ function filterGallery() {
         item.style.display = shouldDisplay ? 'block' : 'none';
     });
 
-    // If the listed price checkbox is checked, sort the items by price
+    // Sort and display items only if 'Listed Only' is checked
     if (isListedPriceChecked) {
-        galleryItems = galleryItems
+        const filteredAndSortedItems = galleryItems
             .filter(item => item.dataset.listedPrice && item.dataset.listedPrice !== 'undefined')
             .sort((a, b) => parseFloat(a.dataset.listedPrice) - parseFloat(b.dataset.listedPrice));
 
-        // Clear the gallery and append sorted items
         gallery.innerHTML = '';
-        galleryItems.forEach(item => gallery.appendChild(item));
+        filteredAndSortedItems.forEach(item => gallery.appendChild(item));
     } else {
         // When 'Listed Only' is unchecked, just apply the normal trait filters
         // No need to sort by number, as they are already in the correct order in the DOM
