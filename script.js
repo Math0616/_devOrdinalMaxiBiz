@@ -21,6 +21,19 @@ function mergeData(imagesData, tokensData) {
 }
 
 function createGallery(mergedData) {
+	// Sort mergedData by listedPrice, and then by number if listedPrice is undefined
+	mergedData.sort((a, b) => {
+		if (a.listedPrice === 'undefined' && b.listedPrice === 'undefined') {
+			return parseInt(a.number, 10) - parseInt(b.number, 10); // Sort by number if both listedPrices are undefined
+		} else if (a.listedPrice === 'undefined') {
+			return 1; // Place undefined listedPrice items at the end
+		} else if (b.listedPrice === 'undefined') {
+			return -1; // Place undefined listedPrice items at the end
+		} else {
+			return parseFloat(a.listedPrice) - parseFloat(b.listedPrice); // Sort by listedPrice
+		}
+	});
+	
     const gallery = document.querySelector('.gallery');
     mergedData.forEach(image => {
 	const imageUrl = `https://ord-mirror.magiceden.dev/content/${image.id}`;
