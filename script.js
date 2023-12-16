@@ -235,46 +235,56 @@ document.querySelectorAll('.filter-dropdown input[type="checkbox"]').forEach(che
 });
 
 function filterGallery() {
-	// Ignore filtering if there's a search term
-	if (document.getElementById('search-bar').value.trim()) {
-        return; 
+    // Ignore filtering if there's a search term
+    if (document.getElementById('search-bar').value.trim()) {
+        return;
     }
 
-	const checkedAttributes = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"]:not([name="eyeColor"], [name="no-trait"])'))
-		.filter(checkbox => checkbox.checked)
-		.map(checkbox => checkbox.name);
-	const checkedEyeColors = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"][name="eyeColor"]:checked'))
-		.map(checkbox => checkbox.value);
-	const isNoTraitChecked = document.getElementById('no-trait').checked;
+    const gallery = document.querySelector('.gallery');
+    let galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    const checkedAttributes = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"]:not([name="eyeColor"], [name="no-trait"])'))
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.name);
+    const checkedEyeColors = Array.from(document.querySelectorAll('.filter-dropdown input[type="checkbox"][name="eyeColor"]:checked'))
+        .map(checkbox => checkbox.value);
+    const isNoTraitChecked = document.getElementById('no-trait').checked;
     const isListedPriceChecked = document.getElementById('filter-listedPrice').checked;
 
-	document.querySelectorAll('.gallery-item').forEach(item => {
-		const matchesEyeColor = checkedEyeColors.length === 0 || checkedEyeColors.includes(item.dataset.eyeColor);
+    // Apply filters first
+    galleryItems.forEach(item => {
+        const matchesEyeColor = checkedEyeColors.length === 0 || checkedEyeColors.includes(item.dataset.eyeColor);
+        let shouldDisplay = matchesEyeColor;
 
-		// Start with shouldDisplay set to the result of matchesEyeColor
-		let shouldDisplay = matchesEyeColor;
-
-		if (isNoTraitChecked) {
-			// If "No Trait" is checked, count the attributes and check if only eyeColor is present
-			const attributeCount = Object.keys(item.dataset).length;
-			shouldDisplay = shouldDisplay && (attributeCount === 4); // This assumes id, eyeColor, number and listedPrice are the only attributes
-		} else if (checkedAttributes.length > 0) {
-			// If other attribute filters are checked, ensure they all match
-			shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
-		}
-		
-		// Check if the listedPrice filter is applied
-        if (isListedPriceChecked) {
-            // Check if the item has a listedPrice and it is not undefined
-            shouldDisplay = shouldDisplay && item.dataset.listedPrice !== 'undefined' && item.dataset.listedPrice !== '';
+        if (isNoTraitChecked) {
+            const attributeCount = Object.keys(item.dataset).length;
+            shouldDisplay = shouldDisplay && (attributeCount === 3 || (attributeCount === 4 && item.dataset.listedPrice)); // Assumes id, eyeColor, number, and optionally listedPrice are the only attributes
+        } else if (checkedAttributes.length > 0) {
+            shouldDisplay = shouldDisplay && checkedAttributes.every(attr => item.dataset[attr] === 'true');
         }
 
-		// If no filters are checked, shouldDisplay remains true based on the matchesEyeColor result
-		item.style.display = shouldDisplay ? 'block' : 'none';
-	});
+        if (isListedPriceChecked) {
+            shouldDisplay = shouldDisplay && item.dataset.listedPrice && item.dataset.listedPrice !== 'undefined';
+        }
 
-	updateCount(); // Call updateCount after filtering is done to update the display count
+        item.style.display = shouldDisplay ? 'block' : 'none';
+    });
+
+    // If the listed price checkbox is checked, sort the items by price
+    if (isListedPriceChecked) {
+        galleryItems = galleryItems
+            .filter(item => item.dataset.listedPrice && item.dataset.listedPrice !== 'undefined')
+            .sort((a, b) => parseFloat(a.dataset.listedPrice) - parseFloat(b.dataset.listedPrice));
+
+        // Clear the gallery and append sorted items
+        gallery.innerHTML = '';
+        galleryItems.forEach(item => gallery.appendChild(item));
+    }
+
+    updateCount();
 }
+
+// Call filterGallery when the listed price checkbox changes
+document.getElementById('filter-listedPrice').addEventListener('change', filterGallery);
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
