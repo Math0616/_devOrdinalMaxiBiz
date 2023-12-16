@@ -21,19 +21,20 @@ function mergeData(imagesData, tokensData) {
 }
 
 function createGallery(mergedData) {
-	// Sort mergedData by listedPrice, and then by number if listedPrice is undefined
+	// Sort mergedData by listedPrice, and then by number if listedPrice is undefined or not present
 	mergedData.sort((a, b) => {
-		if (a.listedPrice === 'undefined' && b.listedPrice === 'undefined') {
-			return parseInt(a.number, 10) - parseInt(b.number, 10); // Sort by number if both listedPrices are undefined
-		} else if (a.listedPrice === 'undefined') {
-			return 1; // Place undefined listedPrice items at the end
-		} else if (b.listedPrice === 'undefined') {
-			return -1; // Place undefined listedPrice items at the end
+		let aPrice = a.listedPrice !== 'undefined' && a.listedPrice !== undefined ? parseFloat(a.listedPrice) : Infinity;
+		let bPrice = b.listedPrice !== 'undefined' && b.listedPrice !== undefined ? parseFloat(b.listedPrice) : Infinity;
+
+		if (aPrice === Infinity && bPrice === Infinity) {
+			// If both prices are undefined, sort by number
+			return parseInt(a.number, 10) - parseInt(b.number, 10);
 		} else {
-			return parseFloat(a.listedPrice) - parseFloat(b.listedPrice); // Sort by listedPrice
+			// Sort by price when available
+			return aPrice - bPrice;
 		}
 	});
-	
+
     const gallery = document.querySelector('.gallery');
     mergedData.forEach(image => {
 	const imageUrl = `https://ord-mirror.magiceden.dev/content/${image.id}`;
