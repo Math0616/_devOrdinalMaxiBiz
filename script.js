@@ -116,6 +116,30 @@ function createGallery(mergedData) {
 	initializeLazyLoad(); // After adding all images to the gallery, initialize lazy loading
 	updateCount(); // This will update the count when the page loads
 
+    // Select all checkboxes within the filter dropdown
+    var checkboxes = document.querySelectorAll('.filter-dropdown input[type="checkbox"]');
+
+    // Add an event listener to each checkbox
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', updateFilterButtonText);
+    });
+
+    function updateFilterButtonText() {
+        var selectedFilters = [];
+
+        // Check which checkboxes are checked and push their values to the array
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                // Assuming the label text is exactly what you want to show
+                selectedFilters.push(checkbox.nextElementSibling.textContent.trim());
+            }
+        });
+
+        // Update the button text
+        var filterButton = document.getElementById('filter-button');
+        filterButton.textContent = selectedFilters.length > 0 ? 'Filters: ' + selectedFilters.join(', ') : 'Traits Filter';
+    }
+
 }
 
 function extractSecondNumber(numberData) {
