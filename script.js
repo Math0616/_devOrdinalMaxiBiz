@@ -120,13 +120,6 @@ function createGallery(mergedData) {
     var checkboxes = document.querySelectorAll('.filter-dropdown input[type="checkbox"]');
     console.log('Total checkboxes found:', checkboxes.length); // Should print the number of checkboxes
 
-    // Debugging: Log the text of each label next to a checkbox to ensure they are being read correctly.
-    checkboxes.forEach(function(checkbox) {
-        var label = checkbox.nextElementSibling;
-        console.log('Checkbox label text:', label ? label.textContent.trim() : 'Label not found');
-    });
-
-    // Attach change event listeners to checkboxes.
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             console.log('Checkbox changed:', checkbox.id); // Debugging: Log the id of the changed checkbox
@@ -134,20 +127,24 @@ function createGallery(mergedData) {
         });
     });
 
-    // Function to update the filter button text.
     function updateFilterButtonText() {
         var selectedFilters = [];
 
-        // Collect the labels of all checked checkboxes.
         checkboxes.forEach(function(checkbox) {
-            var label = checkbox.nextElementSibling;
             if (checkbox.checked) {
-                console.log('Checkbox checked:', checkbox.id); // Debugging: Log the id of the checked checkbox
-                selectedFilters.push(label.textContent.trim());
+                // Use the 'id' of the checkbox to find the associated label
+                var labelSelector = "label[for='" + checkbox.id + "']";
+                var label = document.querySelector(labelSelector);
+
+                if (label) {
+                    console.log('Checkbox checked:', checkbox.id); // Debugging: Log the id of the checked checkbox
+                    selectedFilters.push(label.textContent.trim());
+                } else {
+                    console.log('Label not found for checkbox:', checkbox.id); // Debugging: Log if the label is not found
+                }
             }
         });
 
-        // Update the filter button text with the selected filters.
         var filterButton = document.getElementById('filter-button');
         if (filterButton) {
             filterButton.textContent = selectedFilters.length > 0 ? 'Filters: ' + selectedFilters.join(', ') : 'Traits Filter';
