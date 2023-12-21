@@ -54,7 +54,7 @@ function createGallery(mergedData) {
 	galleryItem.dataset.id = image.id;
 
 	// Set eyeColor and other optional attributes as data attributes
-	const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
+	const attributes = ['eyeColor', 'Female', 'Hat', 'Speaking', 'Smoking', 'NoFace', 'Demon', 'ThreePlusEyes', 'Lines', 'Earphone', 'Music', 'Hands', 'Ghost', 'Emoji', 'Crown', 'OneEye', 'Sick', 'Animal', 'Alien', 'Weapon', 'Ape', 'OpenScalp', 'Miner', 'ShadowDAO', 'LFG', 'Clown', 'Hoodie', 'OGHoodies', 'RealRef', 'Fiction', 'FreeRoss', 'Letterhead', 'Glasses', "sunGlasses", "Clean", 'Robot', 'Punk', 'Undead', 'FaceCover', 'GasMask'];
 	attributes.forEach(attr => {
 		if (image[attr]) {
 		galleryItem.dataset[attr] = image[attr];
@@ -118,11 +118,9 @@ function createGallery(mergedData) {
 
     // Ensure that the checkbox elements are being selected properly.
     var checkboxes = document.querySelectorAll('.filter-dropdown input[type="checkbox"]');
-    console.log('Total checkboxes found:', checkboxes.length); // Should print the number of checkboxes
 
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
-            console.log('Checkbox changed:', checkbox.id); // Debugging: Log the id of the changed checkbox
             updateFilterButtonText(); // Call the update function
         });
     });
@@ -137,7 +135,6 @@ function createGallery(mergedData) {
                 var label = document.querySelector(labelSelector);
 
                 if (label) {
-                    console.log('Checkbox checked:', checkbox.id); // Debugging: Log the id of the checked checkbox
                     selectedFilters.push(label.textContent.trim());
                 } else {
                     console.log('Label not found for checkbox:', checkbox.id); // Debugging: Log if the label is not found
