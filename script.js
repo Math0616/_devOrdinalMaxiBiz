@@ -129,14 +129,19 @@ function createGallery(mergedData) {
 
         checkboxes.forEach(function(checkbox) {
             var label = checkbox.nextElementSibling;
-            if (checkbox.checked && label) {
+            if (label && checkbox.checked) {
+                console.log('Checked: ', label.textContent.trim()); // Debugging
                 selectedFilters.push(label.textContent.trim());
             }
         });
 
+        console.log('Selected Filters: ', selectedFilters.join(', ')); // Debugging
+
         var filterButton = document.getElementById('filter-button');
         if (filterButton) {
             filterButton.textContent = selectedFilters.length > 0 ? 'Filters: ' + selectedFilters.join(', ') : 'Traits Filter';
+        } else {
+            console.log('Filter button not found'); // Debugging
         }
     }
 
