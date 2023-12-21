@@ -127,17 +127,17 @@ function createGallery(mergedData) {
     function updateFilterButtonText() {
         var selectedFilters = [];
 
-        // Check which checkboxes are checked and push their values to the array
         checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                // Assuming the label text is exactly what you want to show
-                selectedFilters.push(checkbox.nextElementSibling.textContent.trim());
+            var label = checkbox.nextElementSibling;
+            if (checkbox.checked && label) {
+                selectedFilters.push(label.textContent.trim());
             }
         });
 
-        // Update the button text
         var filterButton = document.getElementById('filter-button');
-        filterButton.textContent = selectedFilters.length > 0 ? 'Filters: ' + selectedFilters.join(', ') : 'Traits Filter';
+        if (filterButton) {
+            filterButton.textContent = selectedFilters.length > 0 ? 'Filters: ' + selectedFilters.join(', ') : 'Traits Filter';
+        }
     }
 
 }
